@@ -4,237 +4,299 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Bot Developer Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-    /* styles.css */
+        /* Combined Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
+        .container {
+            width: 85%; /* Adjusted for smaller screens */
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            max-width: 1200px;
+        }
 
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    padding: 0 20px; /* Add padding for mobile */
-}
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
 
-/* Navigation Bar */
-.navbar {
-    background-color: #333;
-    color: #fff;
-    overflow: hidden;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-}
+        .navbar .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 0;
+        }
 
-.navbar .container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 15px 0;
-}
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
 
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease; /* Smooth transition for hover */
-}
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
 
-.navbar a:hover {
-    background-color: #555;
-}
+        /* Sections */
+        .section {
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Hide animations that go outside the section */
+        }
 
-/* Sections */
-.section {
-    padding: 50px 0;
-    text-align: center;
-}
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+                        background: rgba(0, 0, 0, 0.05);
+            z-index: -1;
+        }
 
-.section h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #333;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
-}
+        .section h2 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
 
-.section p {
-    font-size: 1.1em;
-    margin-bottom: 30px;
-    color: #555;
-}
+        .section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: #ddd;
+            animation: fadeInUp 1.2s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+            animation-delay: 0.2s;
+        }
 
-/* Home Section */
-.intro-section {
-    margin-bottom: 50px;
-}
+        /* Home Section */
+        .intro-section {
+            margin-bottom: 60px;
+        }
 
-.intro-section h1 {
-    font-size: 3em;
-    color: #333;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
-}
+        .intro-section h1 {
+            font-size: 4em;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+        }
 
-.about-me {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
+        .about-me {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            animation: fadeInUp 1.5s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
 
-/* Bots Section */
-.bot-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
+        /* Bots Section */
+        .bot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
 
-.bot-item {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
-}
+        .bot-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            text-align: left;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 1.3s ease forwards;
+            opacity: 0;
+        }
 
-.bot-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
-}
+        .bot-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
 
-.bot-item h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    color: #333;
-}
+        .bot-item h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
 
-.bot-link {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease; /* Smooth transition for hover */
-}
+        .bot-link {
+            display: inline-block;
+            padding: 15px 30px;
+                        background: linear-gradient(45deg, #3498db, #2980b9);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-.bot-link:hover {
-    background-color: #0056b3;
-}
-/* Contact Section */
-.contact-methods {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-}
+        .bot-link:hover {
+            background: linear-gradient(45deg, #2980b9, #3498db);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            transform: translateY(-3px);
+        }
 
-.contact-link {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #28a745;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover */
-}
+        /* Contact Section */
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+        }
 
-.contact-link:hover {
-    background-color: #218838;
-    transform: scale(1.05);
-}
+        .contact-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-.contact-link i {
-    margin-right: 10px;
-}
+        .contact-link:hover {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            transform: translateY(-3px);
+        }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
+        .contact-link i {
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
 
-    .section {
-        padding: 30px 0;
-    }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .section h2 {
-        font-size: 2em;
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
-    .section p {
-        font-size: 1em;
-    }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
 
-    .bot-grid {
-        grid-template-columns: 1fr;
-    }
+            .section {
+                padding: 40px 0;
+            }
 
-    .contact-methods {
-        flex-direction: column;
-        align-items: center;
-    }
-}
+            .section h2 {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
 
-/* Animations */
-.bot-link, .contact-link, .navbar a {
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
+            .section p {
+                font-size: 1.1em;
+                margin-bottom: 30px;
+            }
 
-.bot-link:hover, .contact-link:hover, .navbar a:hover {
-    transform: scale(1.05);
-}
+            .intro-section h1 {
+                font-size: 3em;
+            }
 
-/* Telegram Web App Styles */
-body {
-    background-color: var(--tg-theme-bg-color);
-    color: var(--tg-theme-text-color);
-}
+            .bot-grid {
+                grid-template-columns: 1fr;
+            }
 
-.navbar {
-    background-color: var(--tg-theme-secondary-bg-color);
-}
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+        }
 
-.navbar a {
-    color: var(--tg-theme-text-color);
-}
+        /* Telegram Web App Styles */
+        body {
+            background-color: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+        }
 
-.section {
-    background-color: var(--tg-theme-bg-color);
-}
+        .navbar {
+            background-color: var(--tg-theme-secondary-bg-color);
+        }
 
-.section h2 {
-    color: var(--tg-theme-text-color);
-}
+        .navbar a {
+            color: var(--tg-theme-text-color);
+        }
 
-.bot-item {
-    background-color: var(--tg-theme-secondary-bg-color);
-}
+        .section {
+            background-color: var(--tg-theme-bg-color);
+        }
 
-.bot-item h3 {
-    color: var(--tg-theme-text-color);
-}
+        .section h2 {
+            color: var(--tg-theme-text-color);
+        }
 
-.bot-item p {
-    color: var(--tg-theme-text-color);
-}
+        .bot-item {
+            background-color: var(--tg-theme-secondary-bg-color);
+        }
 
+        .bot-item h3 {
+            color: var(--tg-theme-text-color);
+        }
 
+        .bot-item p {
+            color: var(--tg-theme-text-color);
+        }
     </style>
-
 </head>
 <body>
 
@@ -298,53 +360,36 @@ body {
         </div>
     </section>
 
-    <script src="script.js">
-    // script.js
-document.addEventListener("DOMContentLoaded", function() {
-    const tg = window.Telegram.WebApp;
-    tg.ready();
+    <script>
+        // Combined JavaScript
+        document.addEventListener("DOMContentLoaded", function() {
+            const tg = window.Telegram.WebApp;
+            tg.ready();
 
-    // Function to scroll smoothly to a section
-    function scrollToSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
+            // Function to scroll smoothly to a section
+            function scrollToSection(sectionId) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
 
-    // Add event listeners to navigation links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const sectionId = this.getAttribute('href').substring(1); // Remove '#'
-            scrollToSection(sectionId);
+            // Add event listeners to navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const sectionId = this.getAttribute('href').substring(1); // Remove '#'
+                    scrollToSection(sectionId);
+                });
+            });
+
+             tg.MainButton.setText("Share Portfolio");
+              tg.MainButton.onClick(function(){
+                tg.showAlert("Thanks for sharing.");
+              });
+              tg.MainButton.show();
         });
-    });
-
-    // Example of sending data back to Telegram (optional)
-    // You can customize this to send any data you want when a button is clicked
-
-   /*
-    const sampleBotLink = document.querySelector('.bot-link');
-    sampleBotLink.addEventListener('click', function(event) {
-      event.preventDefault();
-      const botLink = this.getAttribute('href');
-      //  tg.openLink(botLink); //Open the link on telegram
-      tg.openTelegramLink(botLink); //Open the link on telegram (best for telegram links)
-    });
-    */
-
-    //Set Telegram Main Button
-
-      tg.MainButton.setText("Share Portfolio");
-      tg.MainButton.onClick(function(){
-        tg.showAlert("Thanks for sharing.");
-      });
-      tg.MainButton.show();
-});
-
-
     </script>
 
 </body>
