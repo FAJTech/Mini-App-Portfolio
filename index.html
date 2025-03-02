@@ -7,6 +7,233 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+    /* styles.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px; /* Add padding for mobile */
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+/* Sections */
+.section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.section p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* Home Section */
+.intro-section {
+    margin-bottom: 50px;
+}
+
+.intro-section h1 {
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.about-me {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Bots Section */
+.bot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.bot-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+}
+
+.bot-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+.bot-item h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.bot-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.bot-link:hover {
+    background-color: #0056b3;
+}
+/* Contact Section */
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.contact-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover */
+}
+
+.contact-link:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.contact-link i {
+    margin-right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .section {
+        padding: 30px 0;
+    }
+
+    .section h2 {
+        font-size: 2em;
+    }
+
+    .section p {
+        font-size: 1em;
+    }
+
+    .bot-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-methods {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Animations */
+.bot-link, .contact-link, .navbar a {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.bot-link:hover, .contact-link:hover, .navbar a:hover {
+    transform: scale(1.05);
+}
+
+/* Telegram Web App Styles */
+body {
+    background-color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+}
+
+.navbar {
+    background-color: var(--tg-theme-secondary-bg-color);
+}
+
+.navbar a {
+    color: var(--tg-theme-text-color);
+}
+
+.section {
+    background-color: var(--tg-theme-bg-color);
+}
+
+.section h2 {
+    color: var(--tg-theme-text-color);
+}
+
+.bot-item {
+    background-color: var(--tg-theme-secondary-bg-color);
+}
+
+.bot-item h3 {
+    color: var(--tg-theme-text-color);
+}
+
+.bot-item p {
+    color: var(--tg-theme-text-color);
+}
+
+
+    </style>
 
 </head>
 <body>
@@ -71,7 +298,54 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="script.js">
+    // script.js
+document.addEventListener("DOMContentLoaded", function() {
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    // Function to scroll smoothly to a section
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // Add event listeners to navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const sectionId = this.getAttribute('href').substring(1); // Remove '#'
+            scrollToSection(sectionId);
+        });
+    });
+
+    // Example of sending data back to Telegram (optional)
+    // You can customize this to send any data you want when a button is clicked
+
+   /*
+    const sampleBotLink = document.querySelector('.bot-link');
+    sampleBotLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      const botLink = this.getAttribute('href');
+      //  tg.openLink(botLink); //Open the link on telegram
+      tg.openTelegramLink(botLink); //Open the link on telegram (best for telegram links)
+    });
+    */
+
+    //Set Telegram Main Button
+
+      tg.MainButton.setText("Share Portfolio");
+      tg.MainButton.onClick(function(){
+        tg.showAlert("Thanks for sharing.");
+      });
+      tg.MainButton.show();
+});
+
+
+    </script>
 
 </body>
 </html>
